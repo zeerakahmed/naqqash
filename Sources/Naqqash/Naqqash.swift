@@ -15,7 +15,7 @@ public class Naqqash {
         case CharacterIsNotDecomposable
     }
     
-    enum DiacriticType {
+    public enum DiacriticType {
         case All
         case Essential
         case NonEssential
