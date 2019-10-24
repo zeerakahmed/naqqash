@@ -2,7 +2,7 @@ import Foundation
 
 public class Naqqash {
     
-    enum ContextualForm {
+    public enum ContextualForm {
         case Isolated
         case Final
         case Initial
