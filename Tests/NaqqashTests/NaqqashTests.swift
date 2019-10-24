@@ -2,14 +2,18 @@ import XCTest
 @testable import Naqqash
 
 final class NaqqashTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(Naqqash().text, "Hello, World!")
+    func testIsLetter() {
+        XCTAssertEqual(Naqqash.isLetter(Character("a")), false)
+        XCTAssertEqual(Naqqash.isLetter(Character("ا")), true)
     }
 
+    func testIsForwardJoining() {
+        XCTAssertEqual(Naqqash.isForwardJoining("ا"), false)
+        XCTAssertEqual(Naqqash.isForwardJoining("ب"), true)
+    }
+    
     static var allTests = [
-        ("testExample", testExample),
+        ("testIsLetter", testIsLetter),
+        ("testIsForwardJoining", testIsForwardJoining),
     ]
 }
