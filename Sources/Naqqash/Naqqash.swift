@@ -347,7 +347,7 @@ public class Naqqash {
         0x0654, // ARABIC HAMZA ABOVE
     ]
     
-    class func getCharacter(_ scalar: UnicodeScalar, inContextualForm form: ContextualForm) throws -> Character {
+    public class func getCharacter(_ scalar: UnicodeScalar, inContextualForm form: ContextualForm) throws -> Character {
         let scalarValue = scalar.value
         var result: UInt32
         switch scalarValue {
@@ -1355,7 +1355,7 @@ public class Naqqash {
         return Character(UnicodeScalar(result)!)
     }
     
-    class func isForwardJoining(_ char: Character) -> Bool {
+    public class func isForwardJoining(_ char: Character) -> Bool {
         if !isLetter(char) {
             return false
         }
@@ -1378,30 +1378,30 @@ public class Naqqash {
         }
     }
     
-    class func isLetter(_ char: Character) -> Bool {
+    public class func isLetter(_ char: Character) -> Bool {
         let scalars = self.removeDiacritics(String(char)).unicodeScalars
         if scalars.count == 0 { return false }
         let scalar = UnicodeScalar(scalars[scalars.startIndex].value)!
         return isLetter(scalar)
     }
     
-    class func isLetter(_ scalar: UnicodeScalar) -> Bool {
+    public class func isLetter(_ scalar: UnicodeScalar) -> Bool {
         return self.letters.contains(Int(scalar.value))
     }
     
-    class func isDiacritic(_ scalar: UnicodeScalar) -> Bool {
+    public class func isDiacritic(_ scalar: UnicodeScalar) -> Bool {
         return self.diacritics.contains(Int(scalar.value))
     }
     
-    class func isEssentialDiacritic(_ scalar: UnicodeScalar) -> Bool {
+    public class func isEssentialDiacritic(_ scalar: UnicodeScalar) -> Bool {
         return self.essentialDiacritics.contains(Int(scalar.value))
     }
     
-    class func isNonEssentialDiacritic(_ scalar: UnicodeScalar) -> Bool {
+    public class func isNonEssentialDiacritic(_ scalar: UnicodeScalar) -> Bool {
         return self.diacritics.contains(Int(scalar.value)) && !self.essentialDiacritics.contains(Int(scalar.value))
     }
     
-    class func removeDiacritics(_ string: String, ofType type: DiacriticType = DiacriticType.All) -> String {
+    public class func removeDiacritics(_ string: String, ofType type: DiacriticType = DiacriticType.All) -> String {
         let scalars = string.unicodeScalars
         var resultScalars: [UnicodeScalar] = []
         var result = ""
@@ -1421,7 +1421,7 @@ public class Naqqash {
         return result
     }
     
-    class func isDecomposable(_ char: Character) -> Bool {
+    public class func isDecomposable(_ char: Character) -> Bool {
         let scalars = self.removeDiacritics(String(char)).unicodeScalars
         for s in scalars {
             if self.isDecomposable(s) { return true }
@@ -1429,11 +1429,11 @@ public class Naqqash {
         return false
     }
     
-    class func isDecomposable(_ scalar: UnicodeScalar) -> Bool {
+    public class func isDecomposable(_ scalar: UnicodeScalar) -> Bool {
         return self.decompositions[Int(scalar.value)] != nil
     }
 
-    class func decompose(_ char: Character) -> Character {
+    public class func decompose(_ char: Character) -> Character {
         
         // base case
         let scalars = char.unicodeScalars
@@ -1448,7 +1448,7 @@ public class Naqqash {
         }
     }
     
-    class func decompose(_ scalars: Character.UnicodeScalarView) -> [UnicodeScalar] {
+    public class func decompose(_ scalars: Character.UnicodeScalarView) -> [UnicodeScalar] {
         var result: [UnicodeScalar] = []
         for scalar in scalars {
             result.append(contentsOf: self.decompose(scalar))
@@ -1456,7 +1456,7 @@ public class Naqqash {
         return result
     }
     
-    class func decompose(_ scalar: UnicodeScalar) -> [UnicodeScalar] {
+    public class func decompose(_ scalar: UnicodeScalar) -> [UnicodeScalar] {
         var result: [UnicodeScalar] = []
         let decomposition = self.decompositions[Int(scalar.value)]
         if decomposition == nil { result.append(scalar) }
@@ -1469,7 +1469,7 @@ public class Naqqash {
         return result
     }
     
-    class func addTatweelTo(_ string: String, toDisplay form: ContextualForm) -> String {
+    public class func addTatweelTo(_ string: String, toDisplay form: ContextualForm) -> String {
         let tatweel = "ـ"
         var suffix = ""
         if self.isForwardJoining(string.last!) {
@@ -1487,7 +1487,7 @@ public class Naqqash {
         }
     }
     
-    class func isUrduPreferredLanguage() -> Bool {
+    public class func isUrduPreferredLanguage() -> Bool {
         let preferredLanguages = NSLocale.preferredLanguages
         for lang in preferredLanguages {
             if lang.contains("ur") {
@@ -1497,7 +1497,7 @@ public class Naqqash {
         return false
     }
     
-    class func isNastaliqEnabled() -> Bool {
+    public class func isNastaliqEnabled() -> Bool {
         return isUrduPreferredLanguage()
     }
 }
