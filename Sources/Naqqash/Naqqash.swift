@@ -1486,18 +1486,4 @@ public class Naqqash {
             return tatweel + string
         }
     }
-    
-    public class func isUrduPreferredLanguage() -> Bool {
-        let preferredLanguages = NSLocale.preferredLanguages
-        for lang in preferredLanguages {
-            if lang.contains("ur") {
-                return true
-            }
-        }
-        return false
-    }
-    
-    public class func isNastaliqEnabled() -> Bool {
-        return isUrduPreferredLanguage()
-    }
 }
