@@ -27,11 +27,26 @@ To run test cases run `swift test`.
 Sample use is as follows:
 
 ```
-var a = "اَب"
-a = Naqqash.removeDiacritics(a)
-print(a)
+print(Naqqash.isLetter("ب"))
+>>> true
+
+print(Naqqash.isLetter("۲"))
+>>> false
+
+print(Naqqash.isLeftJoining("ب"))
+>>> true
+
+print(Naqqash.addTatweelTo("ب", toDisplay: Naqqash.ContextualForm.Medial))
+>>> "ـبـ"
+
+print(Naqqash.removeDiacritics("اَب"))
 >>> "اب"
+
 ```
+
+## Languages Supported
+
+The core of Naqqash supports all languages the use the Arabic script. However, due to Naqqash's development as a component of Matnsaz, a number of methods have been written with an Urdu frame of reference. Some of these will not scale to other languages. For example, diacritics have been divided into essential and non-essential sets, and these reflect their use in Urdu publishing. As support for new languages is requested we will revisit these choices and provide more generic and configurable options.
 
 ## Contribution and Engagement
 
