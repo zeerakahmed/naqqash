@@ -18,6 +18,7 @@ final class NaqqashTests: XCTestCase {
     
     func testAddTatweel() {
         XCTAssertEqual(Naqqash.addTatweelTo("ب", toDisplay: Naqqash.ContextualForm.Medial), "ـبـ")
+        "ـںـ"
     }
     
     static var allTests = [

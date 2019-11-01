@@ -1371,8 +1371,10 @@ public class Naqqash {
         if !isLetter(char) {
             return false
         }
-        // special casing to fix errors in Unicode
-        // Farsi Yeh has no contextual forms in Unicode
+        // special casing to fix errors in Unicode about NOON GHUNNA and FARSI YEH
+        else if char == "ں" {
+            return true
+        }
         else if char == "ی" {
             return true
         } else {
