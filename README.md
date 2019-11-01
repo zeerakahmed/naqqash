@@ -1,4 +1,4 @@
-# Naqqash
+# Naqqash نقّاش
 
 A library of common string parsing functions for the Arabic script. If you are conducting natural language processing of any kind – for machine learning, linguistic analysis, or applications software, Naqqash provides common function such as removing diacritics, identifying Unicode points, and displaying contextual forms of letters in the Arabic script.
 
@@ -10,7 +10,7 @@ Programming for iOS meant Swift was the necessary choice. However approaches tak
 
 ## Structure
 
-All library functions can be found in `/Sources/Naqqash/Naqqash.swift`. Declarations have extensive comments. A test suite is provided in `/Tests/NaqqashTests/NaqqashTests.swift` which is also a good place to see the methods in use.
+All library functions can be found in [`/Sources/Naqqash/Naqqash.swift`](/Sources/Naqqash/Naqqash.swift). Declarations have extensive comments. A test suite is provided in [`/Tests/NaqqashTests/NaqqashTests.swift`](/Tests/NaqqashTests/NaqqashTests.swift) which is also a good place to see the methods in use.
 
 ## How to use
 
