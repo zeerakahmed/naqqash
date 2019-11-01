@@ -26,7 +26,7 @@ To run test cases run `swift test`.
 
 Sample use is as follows:
 
-```
+```swift
 print(Naqqash.isLetter("ب"))
 >>> true
 
