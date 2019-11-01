@@ -1,6 +1,6 @@
 # Naqqash نقّاش
 
-A library of common string parsing functions for the Arabic script. If you are conducting natural language processing of any kind – for machine learning, linguistic analysis, or applications software, Naqqash provides common function such as removing diacritics, identifying Unicode points, and displaying contextual forms of letters in the Arabic script.
+A library of common string parsing functions for the Arabic script. If you are conducting natural language processing of any kind – for machine learning, linguistic analysis, or applications software, Naqqash provides common functions such as removing diacritics, identifying Unicode points, and displaying contextual forms of letters in the Arabic script.
 
 ## Technology Stack
 
