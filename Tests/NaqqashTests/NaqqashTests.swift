@@ -1,5 +1,5 @@
 import XCTest
-@testable import Naqqash
+import Naqqash
 
 final class NaqqashTests: XCTestCase {
     func testIsLetter() {
@@ -8,12 +8,21 @@ final class NaqqashTests: XCTestCase {
     }
 
     func testIsForwardJoining() {
-        XCTAssertEqual(Naqqash.isForwardJoining("ا"), false)
-        XCTAssertEqual(Naqqash.isForwardJoining("ب"), true)
+        XCTAssertEqual(Naqqash.isLeftJoining("ا"), false)
+        XCTAssertEqual(Naqqash.isLeftJoining("ب"), true)
+    }
+    
+    func testRemoveDiacritics() {
+        XCTAssertEqual(Naqqash.removeDiacritics("اّ"),"ا")
+    }
+    
+    func testAddTatweel() {
+        XCTAssertEqual(Naqqash.addTatweelTo("ب", toDisplay: Naqqash.ContextualForm.Medial), "ـبـ")
     }
     
     static var allTests = [
         ("testIsLetter", testIsLetter),
         ("testIsForwardJoining", testIsForwardJoining),
+        ("testRemoveDiacritics", testRemoveDiacritics),
     ]
 }

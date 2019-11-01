@@ -2,6 +2,7 @@ import Foundation
 
 public class Naqqash {
     
+    // Each letter in the arabic script could have four basic forms depending on where it is in the word
     public enum ContextualForm {
         case Isolated
         case Final
@@ -9,18 +10,23 @@ public class Naqqash {
         case Medial
     }
     
+    // Custom errors thrown by this library
     enum NaqqashError: Error {
         case UnknownCharacter
         case LetterDoesNotHaveRequestedForm
         case CharacterIsNotDecomposable
     }
     
+    // Diacritics are sorted into essential and non-essential.
+    // This uses as Urdu frame of reference for the moment. Over time this will need to change.
+    // Essential diacritics are identified loosely as diacritics that would be used in text otherwise devoid of diacritics on every character.
     public enum DiacriticType {
         case All
         case Essential
         case NonEssential
     }
     
+    // All Unicode points of letters in the Arabic script
     static let letters: Set = [
         0x0621, // ARABIC LETTER HAMZA
         0x0622, // ARABIC LETTER ALEF WITH MADDA ABOVE
@@ -249,6 +255,7 @@ public class Naqqash {
         0x08BD  // ARABIC LETTER AFRICAN NOON
     ]
     
+    // All Unicode points of diacritics in the Arabic script
     static let diacritics: Set = [
         0x0610, // ARABIC SIGN SALLALLAHOU ALAYHE WASSALLAM
         0x0611, // ARABIC SIGN ALAYHE ASSALLAM
@@ -330,6 +337,8 @@ public class Naqqash {
         0x08FF  // ARABIC MARK SIDEWAYS NOON GHUNNA
     ]
     
+    // All Unicode points of decomposable letters in the Arabic script
+    // These are combined characters that could be written with one or two separate characters
     static let decompositions = [
         0x0622: [0x0627, 0x0653], // ARABIC LETTER ALEF WITH MADDA ABOVE
         0x0623: [0x0627, 0x0654], // ARABIC LETTER ALEF WITH HAMZA ABOVE
@@ -341,12 +350,14 @@ public class Naqqash {
         0x06D3: [0x06D2, 0x0654], // ARABIC LETTER YEH BARREE WITH HAMZA ABOVE
     ]
     
+    // Unicode points of letters identied as essential from an Urdu frame of reference
     static let essentialDiacritics: Set = [
         0x0653, // ARABIC MADDAH ABOVE
         0x0670, // ARABIC LETTER SUPERSCRIPT ALEF
         0x0654, // ARABIC HAMZA ABOVE
     ]
     
+    // For a Unicode point of any Arabic letter, returns the Unicode point in the requested contextual form
     public class func getCharacter(_ scalar: UnicodeScalar, inContextualForm form: ContextualForm) throws -> Character {
         let scalarValue = scalar.value
         var result: UInt32
@@ -1355,15 +1366,12 @@ public class Naqqash {
         return Character(UnicodeScalar(result)!)
     }
     
-    public class func isForwardJoining(_ char: Character) -> Bool {
+    // To check if a character joins to the character on the left
+    public class func isLeftJoining(_ char: Character) -> Bool {
         if !isLetter(char) {
             return false
         }
         // special casing to fix errors in Unicode
-        // Noon Ghunna has no medial form in San Francisco
-        if char == "ں" && self.isNastaliqEnabled() {
-            return true
-        }
         // Farsi Yeh has no contextual forms in Unicode
         else if char == "ی" {
             return true
@@ -1469,10 +1477,11 @@ public class Naqqash {
         return result
     }
     
+    // Uses the Unicode Tatweel character to display a letter's desired contextual form. Note that this is different from returning the Unicode point of the contextual form of the character. This is becuase Unicode does not specify code points for each contextual form for every Arabic script letter. Many fonts also do not map glyhps to respective Unicode points of contextual forms. As a result to display contextual forms a hack is to use the Tatweel character to get the right glyph from the font.
     public class func addTatweelTo(_ string: String, toDisplay form: ContextualForm) -> String {
         let tatweel = "ـ"
         var suffix = ""
-        if self.isForwardJoining(string.last!) {
+        if self.isLeftJoining(string.last!) {
             suffix = tatweel
         }
         switch form {
