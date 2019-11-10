@@ -23,12 +23,18 @@ final class NaqqashTests: XCTestCase {
     
     func testAddTatweel() {
         XCTAssertEqual(Naqqash.addTatweelTo("ب", toDisplay: Naqqash.ContextualForm.Medial), "ـبـ")
-        "ـںـ"
+    }
+    
+    func testRasmEquivalence() {
+        XCTAssertEqual(Naqqash.rasmFor("س", isSameAsRasmFor: "ش"), true)
+        XCTAssertEqual(Naqqash.rasmFor("ا", isSameAsRasmFor: "پ"), false)
     }
     
     static var allTests = [
         ("testIsLetter", testIsLetter),
         ("testIsForwardJoining", testIsLeftJoining),
         ("testRemoveDiacritics", testRemoveDiacritics),
+        ("testAddTatweel", testAddTatweel),
+        ("testRasmEquivalence", testRasmEquivalence)
     ]
 }
