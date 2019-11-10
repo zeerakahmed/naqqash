@@ -1380,6 +1380,13 @@ public class Naqqash {
         } else {
             let scalars = self.removeDiacritics(String(char)).unicodeScalars
             let scalar = UnicodeScalar(scalars[scalars.startIndex].value)!
+            // Some letters do not have complete contextual forms in Unicode, this corrects for those
+            if scalar.value in [
+                0x06BA, // ARABIC LETTER NOON GHUNNA
+                0x06CC, // ARABIC LETTER FARSI YEH
+                0x066E, // ARABIC LETTER DOTLESS BEH
+                0x066F, // ARABIC LETTER DOTLESS QAF
+                ] { return true}
             let isolated = try? getCharacter(scalar, inContextualForm: ContextualForm.Isolated)
             let final = try? getCharacter(scalar, inContextualForm: ContextualForm.Final)
             let initial = try? getCharacter(scalar, inContextualForm: ContextualForm.Initial)
