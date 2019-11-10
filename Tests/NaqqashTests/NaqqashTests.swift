@@ -7,9 +7,14 @@ final class NaqqashTests: XCTestCase {
         XCTAssertEqual(Naqqash.isLetter(Character("ا")), true)
     }
 
-    func testIsForwardJoining() {
+    func testIsLeftJoining() {
         XCTAssertEqual(Naqqash.isLeftJoining("ا"), false)
         XCTAssertEqual(Naqqash.isLeftJoining("ب"), true)
+        XCTAssertEqual(Naqqash.isLeftJoining("ں"), true)
+        XCTAssertEqual(Naqqash.isLeftJoining("ی"), true)
+        XCTAssertEqual(Naqqash.isLeftJoining("ٮ"), true)
+        XCTAssertEqual(Naqqash.isLeftJoining("ڡ"), true)
+        XCTAssertEqual(Naqqash.isLeftJoining("ٯ"), true)
     }
     
     func testRemoveDiacritics() {
@@ -23,7 +28,7 @@ final class NaqqashTests: XCTestCase {
     
     static var allTests = [
         ("testIsLetter", testIsLetter),
-        ("testIsForwardJoining", testIsForwardJoining),
+        ("testIsForwardJoining", testIsLeftJoining),
         ("testRemoveDiacritics", testRemoveDiacritics),
     ]
 }
