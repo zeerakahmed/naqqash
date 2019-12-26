@@ -1784,7 +1784,7 @@ public class Naqqash {
             0x06C3, // ARABIC LETTER TEH MARBUTA GOAL
             0x06D5  // ARABIC LETTER AE
             :
-            result = 0x0647 // ARABIC LETTER HEH
+            result = 0x06C1 // ARABIC LETTER HEH GOAL
         case
             0x06BE, // ARABIC LETTER HEH DOACHASHMEE
             0x06FF  // ARABIC LETTER HEH WITH INVERTED V
