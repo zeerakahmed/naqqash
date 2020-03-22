@@ -1420,9 +1420,9 @@ public class Naqqash {
     }
     
     public class func isLetter(_ char: Character) -> Bool {
-        let scalars = self.removeDiacritics(String(char)).unicodeScalars
+        let scalars = char.unicodeScalars
         if scalars.count == 0 { return false }
-        let scalar = UnicodeScalar(scalars[scalars.startIndex].value)!
+        let scalar = scalars[scalars.startIndex]
         return isLetter(scalar)
     }
     
@@ -1463,10 +1463,10 @@ public class Naqqash {
     }
     
     public class func isDecomposable(_ char: Character) -> Bool {
-        let scalars = self.removeDiacritics(String(char)).unicodeScalars
-        for s in scalars {
-            if self.isDecomposable(s) { return true }
-        }
+        let scalars = char.unicodeScalars
+        if scalars.count == 0 { return false }
+        let scalar = scalars[scalars.startIndex]
+        if self.isDecomposable(scalar) { return true }
         return false
     }
     
@@ -1531,7 +1531,7 @@ public class Naqqash {
     
     public class func rasmFor(_ char: Character) throws -> Character {
         if !self.isLetter(char) { throw NaqqashError.CharacterIsNotALetter }
-        let scalars = self.removeDiacritics(String(char)).unicodeScalars
+        let scalars = char.unicodeScalars
         let scalarValue = scalars[scalars.startIndex].value
         var result: UInt32
         switch scalarValue {
