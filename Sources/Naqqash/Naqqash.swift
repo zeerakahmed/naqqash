@@ -1837,4 +1837,13 @@ public class Naqqash {
         let rasmB = try! self.rasmFor(b)
         return rasmA == rasmB
     }
+    
+    public class func allLetters() -> [Character] {
+        var result:[Character] = []
+        for letter in self.letters {
+            let char = Character(UnicodeScalar(letter))
+            result.append(char)
+        }
+        return result
+    }
 }
