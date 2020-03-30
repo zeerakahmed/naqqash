@@ -1841,7 +1841,7 @@ public class Naqqash {
     public class func allLetters() -> [Character] {
         var result:[Character] = []
         for letter in self.letters {
-            let char = Character(UnicodeScalar(letter))
+            let char = Character(UnicodeScalar(letter)!)
             result.append(char)
         }
         return result
