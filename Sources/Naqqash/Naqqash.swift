@@ -1777,7 +1777,6 @@ public class Naqqash {
             result = 0x0648 // ARABIC LETTER WAW
         case
             0x0629, // ARABIC LETTER TEH MARBUTA
-            0x0647, // ARABIC LETTER HEH
             0x06C0, // ARABIC LETTER HEH WITH YEH ABOVE
             0x06C1, // ARABIC LETTER HEH GOAL
             0x06C2, // ARABIC LETTER HEH GOAL WITH HAMZA ABOVE
@@ -1786,6 +1785,7 @@ public class Naqqash {
             :
             result = 0x06C1 // ARABIC LETTER HEH GOAL
         case
+            0x0647, // ARABIC LETTER HEH
             0x06BE, // ARABIC LETTER HEH DOACHASHMEE
             0x06FF  // ARABIC LETTER HEH WITH INVERTED V
             :
