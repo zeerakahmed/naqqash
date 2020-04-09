@@ -377,6 +377,9 @@ public class Naqqash {
         0x0653, // ARABIC MADDAH ABOVE
         0x0670, // ARABIC LETTER SUPERSCRIPT ALEF
         0x0654, // ARABIC HAMZA ABOVE
+        0x064B, // ARABIC FATHATAN
+        0x064D, // ARABIC KASRATAN
+        0x0656  // ARABIC SUBSCRIPT ALEF
     ]
     
     // For a Unicode point of any Arabic letter, returns the Unicode point in the requested contextual form
