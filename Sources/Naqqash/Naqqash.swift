@@ -1517,6 +1517,9 @@ public class Naqqash {
     public class func addTatweelTo(_ string: String, toDisplay form: ContextualForm) -> String {
         let tatweel = "ـ"
         var suffix = ""
+        if !self.isLetter(string.last!) { 
+            return string
+        }
         if self.isLeftJoining(string.last!) {
             suffix = tatweel
         }

@@ -23,6 +23,7 @@ final class NaqqashTests: XCTestCase {
     
     func testAddTatweel() {
         XCTAssertEqual(Naqqash.addTatweelTo("ب", toDisplay: Naqqash.ContextualForm.Medial), "ـبـ")
+        XCTAssertEqual(Naqqash.addTatweelTo("1", toDisplay: Naqqash.ContextualForm.Initial), "1")
     }
     
     func testRasmEquivalence() {
