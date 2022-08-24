@@ -1513,7 +1513,7 @@ public class Naqqash {
         return result
     }
     
-    // Uses the Unicode Tatweel character to display a letter's desired contextual form. Note that this is different from returning the Unicode point of the contextual form of the character. This is becuase Unicode does not specify code points for each contextual form for every Arabic script letter. Many fonts also do not map glyhps to respective Unicode points of contextual forms. As a result to display contextual forms a hack is to use the Tatweel character to get the right glyph from the font.
+    // Uses the Unicode Tatweel character to display a letter's desired contextual form. Note that this is different from returning the Unicode point of the contextual form of the character. This is becuase Unicode does not specify code points for each contextual form for every Arabic script letter. Many fonts also do not map glyhps to respective Unicode points of contextual forms. As a result to display contextual forms a hack is to use the Tatweel character to get the right glyph from the font. Sending a non-letter string returns it in original form.
     public class func addTatweelTo(_ string: String, toDisplay form: ContextualForm) -> String {
         let tatweel = "ـ"
         var suffix = ""
